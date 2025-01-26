@@ -223,7 +223,7 @@ export default class EdgeTTSPlugin extends Plugin {
 				const cursorPosition = editor.getCursor('to');
 
 				// Construct the embed link
-				const embedLink = `\n\n![[${relativePath}]]\n`;
+				const embedLink = `![[${relativePath}]]`;
 
 				// Insert the embed link after the selected text
 				if (selectedText) {
@@ -300,10 +300,11 @@ export default class EdgeTTSPlugin extends Plugin {
 				year: 'numeric',
 				hour: '2-digit',
 				minute: '2-digit',
+				second: '2-digit',
 				hour12: false,
 			}).format(now);
 
-			let sanitizedDate = formattedDate.replace(/,/g, '').trim();
+			let sanitizedDate = formattedDate.replace(/[, :]/g, '').trim();
 
 			// Check for Windows and adjust the date format to remove colons
 			if (os.platform() === 'win32') {
